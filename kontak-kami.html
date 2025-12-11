@@ -254,7 +254,8 @@ form.addEventListener("submit", async (e) => {
         icon: 'success',
         title: 'Pesan berhasil disimpan!',
         text: 'Klik tombol OK untuk kirim ke admin via WhatsApp',
-        confirmButtonText: 'OK, kirim ke admin'
+        confirmButtonText: 'OK, kirim ke admin',
+        confirmButtonColor: '#127720'
       }).then(() => {
         window.location.href = pesanUrl;
         form.reset();
