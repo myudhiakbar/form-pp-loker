@@ -179,11 +179,14 @@ function validateWA() {
 function validateFormFields() {
   let valid = true;
   validateField(namaField, namaField.value.trim() !== "");
-  validateField(waField, validateWA());
+  const isValidWA = validateWA();  // hanya sekali
+  validateField(waField, isValidWA);
   validateField(pesanField, pesanField.value.trim() !== "");
+
   form.querySelectorAll(".form-control").forEach((f) => {
     if (f.classList.contains("is-invalid")) valid = false;
   });
+
   return valid;
 }
 
@@ -208,20 +211,6 @@ form.addEventListener("submit", async (e) => {
   const isiPesan = pesanField.value.trim();
 
   const confirmSend = await Swal.fire({
-    title: 'Simpan pesan sekarang?',
-    text: 'Pastikan data yang kamu isi sudah benar.',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonText: 'OK, lanjutkan',
-    cancelButtonText: 'Batal',
-    allowOutsideClick: false,
-    allowEscapeKey: false,
-    reverseButtons: true
-  });
-
-  if (!confirmSend.isConfirmed) return;
-
-  Swal.fire({
     title: 'Menyimpan pesan...',
     text: 'Mohon tunggu sebentar.',
     allowOutsideClick: false,
