@@ -205,12 +205,9 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  const submitBtn = document.getElementById("submitBtn");
-  const nama = namaField.value.trim();
-  const wa = waField.value.trim();
-  const isiPesan = pesanField.value.trim();
+  const submitBtn = document.getElementById("submitBtn")
 
-  const confirmSend = await Swal.fire({
+  Swal.fire({
     title: 'Menyimpan pesan...',
     text: 'Mohon tunggu sebentar.',
     allowOutsideClick: false,
@@ -224,7 +221,11 @@ form.addEventListener("submit", async (e) => {
     Mengirim...
   `;
 
+  const nama = namaField.value.trim();
+  const wa = waField.value.trim();
+  const isiPesan = pesanField.value.trim();
   const data = { nama, wa, isiPesan };
+  
   const scriptURL = "https://script.google.com/macros/s/AKfycbztu0VlT9aVNgqxLLm8e687FypkgYFPYUsqlThUH2R8d8sZNGg9P2Vn72dfSuYkWnc/exec";
   const ADMIN_WA = "6287713314496";
 
