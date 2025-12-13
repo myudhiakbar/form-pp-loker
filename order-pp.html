@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Order PP Loker</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4/animate.min.css"/>
+
+  <style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    background: linear-gradient(135deg, #ece9e6, #ffffff);
+    color: #000000;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3.2px;
+  }
+
+  .form-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  h2 {
+    color: #01239e;
+    font-weight: 600;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 1.5rem 0 2rem;
+  }
+
+  input.form-control,
+  select.form-select {
+    height: 45px;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  input[type="file"].form-control {
+    height: auto;
+    padding: 0.5rem;
+  }
+
+  .rekening {
+    margin: 2rem 0 0;
+  }
+
+  .rekening p {
+    margin: 0 0 0.5rem;
+  }
+
+  .btn-submit {
+    background: linear-gradient(45deg, #1237f3, #223fe6);
+    border: none;
+    color: #ffffff;
+    padding: 0.7rem 0;
+    margin: 1rem 0;
+  }
+
+  .btn-submit:hover {
+    opacity: 0.9;
+    color: #ffffff;
+  }
+
+  footer {
+    margin: 2.5rem 0 0;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  footer a {
+    color: blue;
+    text-decoration: none;
+  }
+
+  .is-invalid {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.15);
+  }
+
+  .is-valid {
+    border-color: #28a745 !important;
+    box-shadow: 0 0 0 0.15rem rgba(40, 167, 69, 0.15);
+  }
+
+  .invalid-feedback {
+    display: none;
+    font-size: 0.85rem;
+    color: #dc3545;
+    margin: 0.7rem 0 0;
+    line-height: 1.2;
+  }
+
+::placeholder {
+    color: #9ca3af !important;
+    opacity: 1;
+  }
+  :-ms-input-placeholder {
+    color: #9ca3af !important;
+  }
+  ::-ms-input-placeholder {
+    color: #9ca3af !important;
+  }
+
+  /* Placeholder untuk select */
+  select.form-select option[value=""] {
+    color: #9ca3af;
+  }
+
+  @media (max-width: 767px) {
+    h2 { font-size: 1.4rem; }
+    footer { font-size: 0.9rem; }
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid py-4">
+    <div class="form-container mx-auto">
+      <h2>Konfirmasi Pembayaran<br>Paid Promote / Iklan Loker Kesehatan ID</h2>
+      <form id="orderForm">
+        <div class="mb-3">
+          <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
+          <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Pengiklan" required>
+          <div class="invalid-feedback">Wajib diisi</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="invoice" class="form-label">Nomor Invoice <span class="text-danger">*</span></label>
+          <input type="text" id="invoice" name="invoice" class="form-control" placeholder="INV12345" required>
+          <div class="invalid-feedback">Wajib diisi</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="produk" class="form-label">Pilih Paket <span class="text-danger">*</span></label>
+          <select name="produk" id="produk" class="form-select" required>
+            <option value="">⏳ Memuat daftar paket...</option>
+          </select>
+          <div class="invalid-feedback">Silakan pilih paket</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="namaRek" class="form-label">Atas Nama Rekening <span class="text-danger">*</span></label>
+          <input type="text" id="namaRek" name="namaRek" class="form-control" placeholder="Pemilik Rekening" required>
+          <div class="invalid-feedback">Wajib diisi</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="bukti" class="form-label">Upload Bukti Transfer (JPEG/PNG) <span class="text-danger">* (Max 2MB)</span></label>
+          <input type="file" id="bukti" name="bukti" class="form-control" accept="image/jpeg,image/png" required>
+          <div class="invalid-feedback">Harap upload bukti transfer</div>
+        </div>
+
+        <div class="rekening mb-4">
+          <p>➡️ BCA: <span id="bca">5800244716</span>
+            <button type="button" class="copy-btn btn btn-sm btn-light" onclick="copyText('bca')">📋</button></p>
+          <p>➡️ MANDIRI: <span id="mandiri">9000032618168</span>
+            <button type="button" class="copy-btn btn btn-sm btn-light" onclick="copyText('mandiri')">📋</button></p>
+          <p>a.n. Muhammad Yudhi Akbar</p>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn btn-submit w-100">📤 Kirim Pembayaran</button>
+
+        <footer>
+          <a href="https://loker-kesehatan.my.id">Loker Kesehatan ID</a> © 2018 - <span id="year"></span>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  function copyText(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text);
+    Swal.fire({
+      icon: 'success',
+      title: 'Nomor rekening disalin!',
+      text: `✅ ${text}`,
+      timer: 1800,
+      showConfirmButton: false,
+      timerProgressBar: true,
+      hideClass: { popup: 'animate__animated animate__zoomOut' }
+    });
+  }
+
+  const form = document.getElementById("orderForm");
+  const invoiceField = document.getElementById("invoice");
+  const namaField = document.getElementById("nama");
+  const produkField = document.getElementById("produk");
+  const namaRekField = document.getElementById("namaRek");
+  const buktiField = document.getElementById("bukti");
+
+  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwnhTNcpCmCsgouD6RgiF7LH8Qrx_xAr6A56p_THvmpG-4U9frxsLVgkZ5LF9_YSbJeQw/exec";
+  const ADMIN_WA = "6287713314496";
+
+  function validateField(field, condition) {
+    if (!condition) {
+      field.classList.remove("is-valid");
+      field.classList.add("is-invalid");
+    } else {
+      field.classList.remove("is-invalid");
+      field.classList.add("is-valid");
+    }
+    const feedback = field.parentElement.querySelector(".invalid-feedback");
+    if (feedback) feedback.style.display = field.classList.contains("is-invalid") ? "block" : "none";
+  }
+
+  function validateFormFields() {
+    let valid = true;
+    validateField(invoiceField, invoiceField.value.trim() !== "");
+    validateField(namaField, namaField.value.trim() !== "");
+    validateField(produkField, produkField.value.trim() !== "");
+    validateField(namaRekField, namaRekField.value.trim() !== "");
+    validateField(buktiField, !!buktiField.files[0]);
+
+    form.querySelectorAll(".form-control, .form-select").forEach(f => {
+      if (f.classList.contains("is-invalid")) valid = false;
+    });
+    return valid;
+  }
+
+  form.addEventListener("input", e => {
+    const field = e.target;
+    if (field.matches("#invoice")) validateField(field, field.value.trim() !== "");
+    if (field.matches("#nama")) validateField(field, field.value.trim() !== "");
+    if (field.matches("#produk")) validateField(field, field.value.trim() !== "");
+    if (field.matches("#namaRek")) validateField(field, field.value.trim() !== "");
+    if (field.matches("#bukti")) validateField(field, !!field.files[0]);
+  });
+
+  // === Ambil daftar produk ===
+  async function loadProduk() {
+    try {
+      const res = await fetch(WEBAPP_URL);
+      const data = await res.json();
+      const select = document.getElementById("produk");
+      select.innerHTML = "";
+
+      if (data.result === "success" && data.produk.length > 0) {
+        select.innerHTML = '<option value="">-- Pilih Paket --</option>';
+        data.produk.forEach(p => {
+          const opt = document.createElement("option");
+          opt.value = p;
+          opt.textContent = p;
+          select.appendChild(opt);
+        });
+      } else {
+        select.innerHTML = '<option value="">❌ Gagal memuat produk</option>';
+      }
+    } catch (err) {
+      document.getElementById("produk").innerHTML = '<option value="">⚠️ Error memuat produk</option>';
+      console.error(err);
+    }
+  }
+
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result.split(",")[1]);
+      reader.onerror = (err) => reject(err);
+    });
+  }
+
+  // === Submit ===
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!validateFormFields()) return;
+
+    const btn = document.getElementById("submitBtn");
+    btn.classList.add("loading");
+
+    const buktiFile = buktiField.files[0];
+    if (!buktiFile) {
+      Swal.fire("❌", "Harap upload bukti transfer", "error");
+      btn.classList.remove("loading");
+      return;
+    }
+    if (buktiFile.size > 2 * 1024 * 1024) {
+      Swal.fire("❌", "Ukuran file maksimal 2MB", "error");
+      btn.classList.remove("loading");
+      return;
+    }
+
+    Swal.fire({
+      title: 'Menyimpan data...',
+      html: '<small>Mohon tunggu sebentar</small><br><br><div class="spinner-border text-primary" role="status"></div>',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+    });
+
+    try {
+      const buktiBase64 = await toBase64(buktiFile);
+      const data = {
+        nama: namaField.value,
+        invoice: invoiceField.value,
+        produk: produkField.value,
+        namaRek: namaRekField.value,
+        bukti: buktiBase64,
+        buktiNama: buktiFile.name
+      };
+
+      const res = await fetch(WEBAPP_URL, {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+      Swal.close();
+
+      if (result.result === "success") {
+        const fileUrl = result.fileUrl || "-";
+        const pesan = `Halo min, saya sudah transfer untuk iklan\n\n` +
+        `- Nama: ${data.nama}\n` +
+        `- Invoice: ${data.invoice}\n` +
+        `- Produk: ${data.produk}\n` +
+        `- Nama Rek: ${data.namaRek}\n` +
+        `- Bukti: ${fileUrl}`;
+        const pesanUrl = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(pesan)}`;
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Order berhasil disimpan!',
+          text: 'Silakan kirim bukti ke admin via WhatsApp.',
+          confirmButtonText: 'Kirim ke Admin'
+        }).then(() => {
+          window.location.href = pesanUrl;
+          form.reset();
+          form.querySelectorAll(".form-control").forEach(field => field.classList.remove("is-valid", "is-invalid"));
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal menyimpan order!',
+          text: result.message || 'Silakan coba lagi.'
+        });
+      }
+    } catch (err) {
+      Swal.close();
+      Swal.fire({
+        icon: 'error',
+        title: 'Terjadi kesalahan!',
+        text: err.message
+      });
+    } finally {
+      btn.classList.remove("loading");
+    }
+  });
+  window.addEventListener("DOMContentLoaded", loadProduk);
+</script>
+</body>
+</html>
