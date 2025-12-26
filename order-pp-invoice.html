@@ -172,7 +172,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="invoice" class="form-label">Nomor Invoice <span class="text-danger">*</span></label>
+          <label for="invoice" class="form-label">Nomor Invoice</label>
           <input type="text" id="invoice" name="invoice" class="form-control" placeholder="contoh: INV12345">
           <div class="invalid-feedback">Wajib diisi</div>
         </div>
@@ -299,7 +299,6 @@
     let valid = true;
 
     validateField(namaField, namaField.value.trim() !== "");
-    validateField(invoiceField, invoiceField.value.trim() !== "");
     validateField(produkField, produkField.value.trim() !== "");
     validateField(namaRekField, namaRekField.value.trim() !== "");
     validateField(buktiField, !!buktiField.files[0]);
@@ -316,7 +315,6 @@
     const field = e.target;
 
     if (field.matches("#nama")) validateField(field, field.value.trim() !== "");
-    if (field.matches("#invoice")) validateField(field, field.value.trim() !== "");
     if (field.matches("#produk")) validateField(field, field.value.trim() !== "");
     if (field.matches("#namaRek"))
       validateField(field, field.value.trim() !== "");
@@ -438,6 +436,8 @@
           icon: "success",
           title: "Order berhasil disimpan!",
           text: "Silakan kirim bukti ke admin via WhatsApp.",
+          allowOutsideClick: false,
+          allowEscapeKey: false,
           confirmButtonText: "Kirim ke Admin",
         }).then(() => {
           // Buka WhatsApp
